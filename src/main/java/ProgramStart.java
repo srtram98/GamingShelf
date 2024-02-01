@@ -48,17 +48,17 @@ public class ProgramStart {
 		if (searchBy == 1) {
 			System.out.print("Enter the game's name: ");
 			String gameName = in.nextLine();
-			foundItems = gh.searchForItemByStore(gameName);
+			foundItems = gh.searchForGameByName(gameName);
 		} 
 		else if (searchBy == 2){
 			System.out.print("Enter the genre: ");
 			String gameGenre = in.nextLine();
-			foundItems = gh.searchForItemByItem(gameGenre);
+			foundItems = gh.searchForGameByGenre(gameGenre);
 			}
 		else {
 			System.out.print("Enter the platform: ");
 			String gamePlatform = in.nextLine();
-			foundItems = gh.searchForItemByItem(gamePlatform);
+			foundItems = gh.searchForGameByPlatform(gamePlatform);
 		}
 		if (!foundItems.isEmpty()) {
 			System.out.println("Found Results.");
@@ -87,7 +87,7 @@ public class ProgramStart {
 				toEdit.setGenre(newGenre);
 			}
 			else if (update == 3) {
-				System.out.print("New Platform");
+				System.out.print("New Platform: ");
 				String newPlatform = in.nextLine();
 				toEdit.setPlatform(newPlatform);
 			}

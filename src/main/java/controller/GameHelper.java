@@ -66,21 +66,32 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		
 	}
 
-	public List<Game> searchForItemByStore(String gameName) {
+	public List<Game> searchForGameByName(String gameName) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Game> typedQuery = em.createQuery("SELECT g FROM Game g WHERE g.name = :selectedStore", Game.class);
-		typedQuery.setParameter("selectedStore", gameName);
+		TypedQuery<Game> typedQuery = em.createQuery("SELECT g FROM Game g WHERE g.name = :selectedName", Game.class);
+		typedQuery.setParameter("selectedName", gameName);
 		List<Game> foundItems = typedQuery.getResultList();
 		em.close();
 		return foundItems;
 	}
 
-	public List<Game> searchForItemByItem(String platform) {
+	public List<Game> searchForGameByGenre(String gameGenre) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Game> typedQuery = em.createQuery("SELECT g FROM Game g WHERE g.item = :selectedItem", Game.class);
-		typedQuery.setParameter("selectedItem", platform);
+		TypedQuery<Game> typedQuery = em.createQuery("SELECT g FROM Game g WHERE g.genre = :selectedGenre", Game.class);
+		typedQuery.setParameter("selectedGenre", gameGenre);
+		
+		List<Game> foundItems = typedQuery.getResultList();
+		em.close();
+		return foundItems;
+	}
+	
+	public List<Game> searchForGameByPlatform(String gamePlatform) {
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		TypedQuery<Game> typedQuery = em.createQuery("SELECT g FROM Game g WHERE g.platform = :selectedPlatform", Game.class);
+		typedQuery.setParameter("selectedPlatform", gamePlatform);
 		
 		List<Game> foundItems = typedQuery.getResultList();
 		em.close();
